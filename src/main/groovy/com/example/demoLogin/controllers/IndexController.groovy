@@ -1,4 +1,4 @@
-package com.example.demoLogin
+package com.example.demoLogin.Controllers
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 class IndexController {
 
-    @GetMapping("/")
-    String showIndex(){
-        return "index";
-    }
+	@GetMapping("/")
+	public String index() {
+		return "home";
+	}
+
 }
