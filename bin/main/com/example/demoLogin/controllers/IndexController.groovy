@@ -13,4 +13,10 @@ class IndexController {
 		return model;
 	}
 
+	@GetMapping("/register")
+	ModelAndView register() {
+    ModelAndView model = new ModelAndView("register");
+		return model;
+	}
+
 }
