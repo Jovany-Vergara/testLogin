@@ -24,9 +24,8 @@ class IndexController {
 	@PostMapping("/testPost")
     @ResponseBody
     String testPost() {
-
+			print("hola llegue")
         return "has hecho una peticion post";
-
     }
 
 }
