@@ -7,9 +7,14 @@ import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
+import com.example.demoLogin.repository.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
 
 @Controller
 class IndexController {
+
+  @Autowired
+  UserRepository userRepository
 
 	@GetMapping("/")
 	ModelAndView index() {
@@ -28,12 +33,20 @@ class IndexController {
   ModelAndView testPost(@RequestParam Map data) {
 		println("*"*100)
 		println("hola")
-		println (data)
-
-		User user = new User(name, password)
+		println(data)
+		User user = new User(name: data.username, password: data.password)
+		userRepository.save(user)
 
     ModelAndView model = new ModelAndView("register");
 		return model;
   }
+
+	@GetMapping("/findAll")
+  @ResponseBody
+  ModelAndView testPost(@RequestParam Map data) {
+
+		ModelAndView model = new ModelAndView("register");
+		return model;
+	}
 
 }
