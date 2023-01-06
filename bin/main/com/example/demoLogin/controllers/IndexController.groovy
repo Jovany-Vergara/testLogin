@@ -28,7 +28,10 @@ class IndexController {
   ModelAndView testPost(@RequestParam Map data) {
 		println("*"*100)
 		println("hola")
-		println data
+		println (data)
+
+		User user = new User(name, password)
+
     ModelAndView model = new ModelAndView("register");
 		return model;
   }
