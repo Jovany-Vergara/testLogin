@@ -30,7 +30,7 @@
       <button type="submit"  class="btn btn-info mb-3">Buscar</button>
     </form>
   </div>
-  <div th:if="${!isCreated}">
+  <div class="alert alert-danger" role="alert" th:if="${!isCreated}">
     El Usuario ya existe
   </div>
 
