@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
 import com.example.demoLogin.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import com.example.demoLogin.service.UserService
 
 @Controller
 class IndexController {
 
   @Autowired
   UserRepository userRepository
+	@Autowired
+  UserService userService
 
 	@GetMapping("/")
 	ModelAndView index() {
@@ -25,6 +28,7 @@ class IndexController {
 	@GetMapping("/register")
 	ModelAndView register() {
     ModelAndView model = new ModelAndView("register");
+		model.addObject("isCreated", true)
 		return model;
 	}
 
@@ -34,14 +38,11 @@ class IndexController {
 		println("*"*100)
 		println("hola")
 		println(data)
-		Boolean isExisted = true;
-		if(!isExisted){
-			User user = new User(name: data.username, password: data.password)
-			userRepository.save(user)
-		}
-
+		User user = new User(name: data.username, password: data.password)
+		Boolean isCreated = userService.createUser(user);
     ModelAndView model = new ModelAndView("register");
-		model.addObject("isExisted", isExisted)
+		println(isCreated)
+		model.addObject("isCreated", isCreated)
 		return model;
   }
 
