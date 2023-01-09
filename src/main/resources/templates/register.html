@@ -30,5 +30,25 @@
       <button type="submit"  class="btn btn-info mb-3">Buscar</button>
     </form>
   </div>
+  <div th:if="${isExisted}">
+    Ya existe
+  </div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"># ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Password</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.id}"></td>
+      <td th:text="${user.name}"></td>
+      <td th:text="${user.password}"></td>
+    </tr>
+  </tbody>
+</table>
 </body>
 </html>

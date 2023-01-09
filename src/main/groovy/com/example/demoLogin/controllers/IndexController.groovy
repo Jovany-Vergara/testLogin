@@ -34,19 +34,27 @@ class IndexController {
 		println("*"*100)
 		println("hola")
 		println(data)
-		User user = new User(name: data.username, password: data.password)
-		userRepository.save(user)
+		Boolean isExisted = true;
+		if(!isExisted){
+			User user = new User(name: data.username, password: data.password)
+			userRepository.save(user)
+		}
 
     ModelAndView model = new ModelAndView("register");
+		model.addObject("isExisted", isExisted)
 		return model;
   }
 
 	@GetMapping("/findAll")
   @ResponseBody
-  ModelAndView testPost(@RequestParam Map data) {
-
-		ModelAndView model = new ModelAndView("register");
-		return model;
+	ModelAndView findAllUsers(){
+		println("*" * 100)
+		println("Aqui estan tus usuarios")
+		List<Map> users = userRepository.findAll()
+		println(users.dump());
+    ModelAndView model = new ModelAndView("register");
+		model.addObject("users", users)
+		return model
 	}
 
 }
