@@ -30,11 +30,11 @@
       <button type="submit"  class="btn btn-info mb-3">Buscar</button>
     </form>
   </div>
-  <div th:if="${isExisted}">
-    Ya existe
+  <div th:if="${!isCreated}">
+    El Usuario ya existe
   </div>
 
-<table class="table">
+<table class="table table-success table-striped table-hover">
   <thead>
     <tr>
       <th scope="col"># ID</th>
