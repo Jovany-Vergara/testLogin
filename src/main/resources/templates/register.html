@@ -26,9 +26,6 @@
     </form>
     <a th:href="@{/}"><button type="button" class="btn btn-danger mb-3">Home</button></a>
 
-    <form action="/findAll" method="GET">
-      <button type="submit"  class="btn btn-info mb-3">Buscar</button>
-    </form>
   </div>
   <div class="alert alert-danger" role="alert" th:if="${!isCreated}">
     El Usuario ya existe
