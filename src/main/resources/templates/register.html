@@ -26,26 +26,11 @@
     </form>
     <a th:href="@{/}"><button type="button" class="btn btn-danger mb-3">Home</button></a>
 
+    <a th:href="@{/consulta}"><button type="button" class="btn btn-primary mb-3">Consultar Usuarios →</button></a>
   </div>
   <div class="alert alert-danger" role="alert" th:if="${!isCreated}">
     El Usuario ya existe
   </div>
 
-<table class="table table-success table-striped table-hover">
-  <thead>
-    <tr>
-      <th scope="col"># ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Password</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr th:each="user : ${users}">
-      <td th:text="${user.id}"></td>
-      <td th:text="${user.name}"></td>
-      <td th:text="${user.password}"></td>
-    </tr>
-  </tbody>
-</table>
 </body>
 </html>
