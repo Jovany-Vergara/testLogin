@@ -40,11 +40,25 @@ class IndexController {
 		println(data)
 		User user = new User(name: data.username, password: data.password)
 		Boolean isCreated = userService.createUser(user);
-    ModelAndView model = new ModelAndView("register");
 		println(isCreated)
+		if(isCreated) {
+    	ModelAndView model = new ModelAndView("consulta");
+			List<Map> users = userRepository.findAll()
+			model.addObject("users", users)
+			return model;
+		}
+    ModelAndView model = new ModelAndView("register");
 		model.addObject("isCreated", isCreated)
 		return model;
   }
+
+	@GetMapping("/consulta")
+	ModelAndView consulta(){
+		ModelAndView model = new ModelAndView("consulta");
+		List<Map> users = userRepository.findAll()
+		model.addObject("users", users)
+		return model
+	}
 
 	@GetMapping("/findAll")
   @ResponseBody
