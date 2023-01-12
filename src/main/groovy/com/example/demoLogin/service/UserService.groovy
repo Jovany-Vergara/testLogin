@@ -20,4 +20,8 @@ class UserService {
     }
     false
   }
+
+  def deleteById (Integer id){
+    userRepository.deleteById(id)
+  }
 }
