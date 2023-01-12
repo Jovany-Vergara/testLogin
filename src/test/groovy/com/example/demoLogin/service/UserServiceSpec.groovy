@@ -16,6 +16,12 @@ class UserServiceSpec extends Specification {
   @Autowired
   UserRepository userRepository
 
+  private User newUser() {
+    new User(
+      userName: "ray",
+      password: "test"
+    )
+  }
 
   def "Spec 0 check service inject"() {
     expect:
@@ -45,5 +51,17 @@ class UserServiceSpec extends Specification {
       Boolean result = userService.createUser(user)
     then:
       result == false
+  }
+
+  @Transactional
+  def "Elimited user by id"(){
+    given: "existen user"
+    User user = newUser()
+    user = userService.createUser(user)
+    Integer id = user.id
+    when: "Delete user"
+    def result = userService.deleteById(id)
+    then:
+    result
   }
 }
