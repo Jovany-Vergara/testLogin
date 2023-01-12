@@ -7,6 +7,9 @@ import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.http.ResponseEntity
 import com.example.demoLogin.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import com.example.demoLogin.service.UserService
@@ -72,4 +75,22 @@ class IndexController {
 		return model
 	}
 
+	@DeleteMapping("/{id}")
+	ResponseEntity<String> deleteById(@PathVariable Integer id) {
+    userService.deleteById(id)
+    new ResponseEntity<String>(HttpStatus.OK)
+  }
+
+	@GetMapping("/login")
+	ModelAndView login(){
+    ModelAndView model = new ModelAndView("login");
+		return model
+	}
+
+	@PostMapping("/login")
+	ModelAndView login_in(){
+		println "Hola mundo"
+    ModelAndView model = new ModelAndView("login");
+		return model
+	}
 }
