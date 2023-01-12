@@ -25,7 +25,8 @@
           <td th:text="${user.id}"></td>
           <td th:text="${user.name}"></td>
           <td th:text="${user.password}"></td>
-          <td><button type="button" class="btn btn-danger mb-3">Eliminar</button></td>
+          <td>
+            <form action="/{id}" method="DELETE"><button type="button" class="btn btn-danger mb-3">Eliminar</button></form></td>
         </tr>
       </tbody>
     </table>
