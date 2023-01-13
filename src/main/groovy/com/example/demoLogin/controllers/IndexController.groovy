@@ -77,14 +77,14 @@ class IndexController {
 	}
 
  	@PostMapping("/delete")
- 	String deleteById(@RequestParam("name") String name) {
+ 	ModelAndView deleteByName(@RequestParam("name") String name) {
 		println "Hola: delete ${name}"
 		userService.deleteUser(name)
 
-		ModelAndView model = new ModelAndView("consulta");
+    ModelAndView model = new ModelAndView("consulta");
 		List<Map> users = userRepository.findAll()
 		model.addObject("users", users)
-		return model
+		return model;
  	}
 
 	@GetMapping("/login")
