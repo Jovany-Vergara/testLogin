@@ -11,5 +11,6 @@ interface UserRepository extends CrudRepository<User, Integer> {
 
   User findByName(String name)
   List<User> findAll()
+  void deleteByName(String name)
 
 }
