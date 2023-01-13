@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity
 import com.example.demoLogin.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import com.example.demoLogin.service.UserService
+import org.springframework.web.server.ResponseStatusException
 
 @Controller
 class IndexController {
@@ -75,11 +76,16 @@ class IndexController {
 		return model
 	}
 
-	@DeleteMapping("/{id}")
-	ResponseEntity<String> deleteById(@PathVariable Integer id) {
-    userService.deleteById(id)
-    new ResponseEntity<String>(HttpStatus.OK)
-  }
+ 	@PostMapping("/delete")
+ 	String deleteById(@RequestParam("name") String name) {
+		println "Hola: delete ${name}"
+		userService.deleteUser(name)
+
+		ModelAndView model = new ModelAndView("consulta");
+		List<Map> users = userRepository.findAll()
+		model.addObject("users", users)
+		return model
+ 	}
 
 	@GetMapping("/login")
 	ModelAndView login(){
