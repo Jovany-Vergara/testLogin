@@ -5,6 +5,7 @@ import com.example.demoLogin.entity.User
 import org.springframework.beans.factory.annotation.Autowired
 import com.example.demoLogin.repository.UserRepository
 import com.example.demoLogin.entity.User
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserService {
@@ -21,7 +22,9 @@ class UserService {
     false
   }
 
-  def deleteById (Integer id){
-    userRepository.deleteById(id)
+  @Transactional
+  def deleteUser(String name){
+    userRepository.deleteByName(name)
   }
+
 }
