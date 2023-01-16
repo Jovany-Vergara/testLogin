@@ -1,4 +1,4 @@
-package com.example.demoLogin.config
+//package com.example.demoLogin.config
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.example.demoLogin.config
+//package com.example.demoLogin.config
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -10,7 +10,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
    public void addViewControllers(ViewControllerRegistry registry) {
       registry.addViewController("/home").setViewName("home");
       registry.addViewController("/").setViewName("home");
-      registry.addViewController("/hello").setViewName("hello");
-      registry.addViewController("/login").setViewName("login");
+      registry.addViewController("/register").setViewName("register");
+      registry.addViewController("/consulta").setViewName("consulta");
    }
 }
