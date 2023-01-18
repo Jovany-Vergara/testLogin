@@ -77,7 +77,7 @@ class IndexController {
     }
 
      @PostMapping("/delete")
-     ModelAndView deleteByName(@RequestParam("username") String username) {
+     ModelAndView deleteByUsername(@RequestParam("username") String username) {
         println "Hola: delete ${username}"
         userService.deleteByUsername(username)
 
