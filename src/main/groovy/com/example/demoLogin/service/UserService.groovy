@@ -23,8 +23,8 @@ class UserService {
   }
 
   @Transactional
-  def deleteUser(String username){
-    userRepository.deleteByName(username)
+  def deleteByUsername(String username){
+    userRepository.deleteByUsername(username)
   }
 
 }
