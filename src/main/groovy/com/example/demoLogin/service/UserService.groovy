@@ -14,7 +14,7 @@ class UserService {
   UserRepository userRepository
 
   Boolean createUser(User user){
-    User userExist = userRepository.findByName(user.name)
+    User userExist = userRepository.findByUsername(user.username)
     if(!userExist) {
       userRepository.save(user)
       return true
@@ -23,8 +23,8 @@ class UserService {
   }
 
   @Transactional
-  def deleteUser(String name){
-    userRepository.deleteByName(name)
+  def deleteUser(String username){
+    userRepository.deleteByName(username)
   }
 
 }
