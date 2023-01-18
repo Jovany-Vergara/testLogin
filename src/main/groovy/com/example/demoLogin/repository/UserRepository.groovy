@@ -9,8 +9,8 @@ import org.springframework.data.domain.Sort
 @Repository
 interface UserRepository extends CrudRepository<User, Integer> {
 
-  User findByName(String name)
+  User findByUsername(String username)
   List<User> findAll()
-  void deleteByName(String name)
+  void deleteByUsername(String username)
 
 }
