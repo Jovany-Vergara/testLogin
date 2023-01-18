@@ -20,83 +20,83 @@ class IndexController {
 
   @Autowired
   UserRepository userRepository
-	@Autowired
+    @Autowired
   UserService userService
 
-	@GetMapping("/")
-	ModelAndView index() {
+    @GetMapping("/")
+    ModelAndView index() {
     ModelAndView model = new ModelAndView("home");
-		return model;
-	}
+        return model;
+    }
 
-	@GetMapping("/register")
-	ModelAndView register() {
+    @GetMapping("/register")
+    ModelAndView register() {
     ModelAndView model = new ModelAndView("register");
-		model.addObject("isCreated", true)
-		return model;
-	}
+        model.addObject("isCreated", true)
+        return model;
+    }
 
-	@PostMapping("/testPost")
+    @PostMapping("/testPost")
   @ResponseBody
   ModelAndView testPost(@RequestParam Map data) {
-		println("*"*100)
-		println("hola")
-		println(data)
-		User user = new User(name: data.username, password: data.password)
-		Boolean isCreated = userService.createUser(user);
-		println(isCreated)
-		if(isCreated) {
-    	ModelAndView model = new ModelAndView("consulta");
-			List<Map> users = userRepository.findAll()
-			model.addObject("users", users)
-			return model;
-		}
+        println("*"*100)
+        println("hola")
+        println(data)
+        User user = new User(username: data.username, password: data.password, enabled: true)
+        Boolean isCreated = userService.createUser(user);
+        println(isCreated)
+        if(isCreated) {
+        ModelAndView model = new ModelAndView("consulta");
+            List<Map> users = userRepository.findAll()
+            model.addObject("users", users)
+            return model;
+        }
     ModelAndView model = new ModelAndView("register");
-		model.addObject("isCreated", isCreated)
-		return model;
+        model.addObject("isCreated", isCreated)
+        return model;
   }
 
-	@GetMapping("/consulta")
-	ModelAndView consulta(){
-		ModelAndView model = new ModelAndView("consulta");
-		List<Map> users = userRepository.findAll()
-		model.addObject("users", users)
-		return model
-	}
+    @GetMapping("/consulta")
+    ModelAndView consulta(){
+        ModelAndView model = new ModelAndView("consulta");
+        List<Map> users = userRepository.findAll()
+        model.addObject("users", users)
+        return model
+    }
 
-	@GetMapping("/findAll")
+    @GetMapping("/findAll")
   @ResponseBody
-	ModelAndView findAllUsers(){
-		println("*" * 100)
-		println("Aqui estan tus usuarios")
-		List<Map> users = userRepository.findAll()
-		println(users.dump());
+    ModelAndView findAllUsers(){
+        println("*" * 100)
+        println("Aqui estan tus usuarios")
+        List<Map> users = userRepository.findAll()
+        println(users.dump());
     ModelAndView model = new ModelAndView("register");
-		model.addObject("users", users)
-		return model
-	}
+        model.addObject("users", users)
+        return model
+    }
 
- 	@PostMapping("/delete")
- 	ModelAndView deleteByName(@RequestParam("name") String name) {
-		println "Hola: delete ${name}"
-		userService.deleteUser(name)
+     @PostMapping("/delete")
+     ModelAndView deleteByName(@RequestParam("username") String username) {
+        println "Hola: delete ${username}"
+        userService.deleteByUsername(username)
 
     ModelAndView model = new ModelAndView("consulta");
-		List<Map> users = userRepository.findAll()
-		model.addObject("users", users)
-		return model;
- 	}
+        List<Map> users = userRepository.findAll()
+        model.addObject("users", users)
+        return model;
+     }
 
-	@GetMapping("/login")
-	ModelAndView login(){
+    @GetMapping("/login")
+    ModelAndView login(){
     ModelAndView model = new ModelAndView("login");
-		return model
-	}
+        return model
+    }
 
-	@PostMapping("/login")
-	ModelAndView login_in(){
-		println "Hola mundo"
+    @PostMapping("/login")
+    ModelAndView login_in(){
+        println "Hola mundo"
     ModelAndView model = new ModelAndView("login");
-		return model
-	}
+        return model
+    }
 }
