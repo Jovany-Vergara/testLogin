@@ -53,7 +53,7 @@ class UserServiceSpec extends Specification {
     userService.createUser(user)
     when: "Delete user"
     userRepository.deleteByName("Diego")
-    User userExists = userRepository.findByName("Diego")
+    User userExists = userRepository.findByUsername("Diego")
     then:
     userExists == null
   }
