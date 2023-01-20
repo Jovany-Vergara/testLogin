@@ -17,6 +17,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Bean(name = "myPasswordEncoder")
     public PasswordEncoder getPasswordEncoder() {
         DelegatingPasswordEncoder delPasswordEncoder = (DelegatingPasswordEncoder) PasswordEncoderFactories
@@ -32,9 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/index.html")
+                .antMatchers("/home")
                 .hasAnyRole("USER","ADMIN")
-                .antMatchers("/admin/admin.html")
+                .antMatchers("/registerrrr")
                 .hasRole("ADMIN")
                 .and()
                 .formLogin()
