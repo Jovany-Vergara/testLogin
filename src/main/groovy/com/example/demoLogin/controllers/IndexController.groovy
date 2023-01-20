@@ -42,7 +42,7 @@ class IndexController {
         println("*"*100)
         println("hola")
         println(data)
-        User user = new User(username: data.username, password: data.password, enabled: true)
+        User user = new User(username: data.username, password: data.password, enabled: true, role: 'ADMIN')
         Boolean isCreated = userService.createUser(user);
         println(isCreated)
         if(isCreated) {
