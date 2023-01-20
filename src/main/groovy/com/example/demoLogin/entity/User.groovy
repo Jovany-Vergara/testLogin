@@ -13,9 +13,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 @Table(name = 'USERS')
 class User implements UserDetails {
 
+  private static final long serialVersionUID = 1L;
+
   @Id
   String username
   String password
+  String role
   Boolean enabled
 
     /**
@@ -46,12 +49,13 @@ class User implements UserDetails {
     this.password = password
   }
 
-    @Override
-  public Set<GrantedAuthority> getAuthorities() {
-    Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>()
-    authorities.add(new SimpleGrantedAuthority('USER'))
-    return authorities
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    authorities.add(new SimpleGrantedAuthority(role));
+    return authorities;
   }
+
 
     @Override
   public boolean isAccountNonExpired() {
